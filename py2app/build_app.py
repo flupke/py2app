@@ -1384,6 +1384,11 @@ class py2app(Command):
 
         indir = os.path.dirname(os.path.join(info['location'], info['name']))
         outdir = os.path.dirname(os.path.join(dst, info['name']))
+
+        # Don't attempt to copy the framework twice
+        if os.path.exists(outdir):
+            return
+
         self.mkpath(os.path.join(outdir, 'Resources'))
         pydir = 'python%s.%s'%(sys.version_info[:2])
 
