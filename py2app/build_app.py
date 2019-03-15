@@ -1967,7 +1967,8 @@ class py2app(Command):
             compression = zipfile.ZIP_STORED
         if not dry_run:
             z = zipfile.ZipFile(zip_filename, "w",
-                                compression=compression)
+                                compression=compression,
+                                allowZip64=True)
             save_cwd = os.getcwd()
             os.chdir(base_dir)
             for dirpath, dirnames, filenames in os.walk('.'):
